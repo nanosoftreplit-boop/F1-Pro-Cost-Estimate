@@ -1,0 +1,885 @@
+[
+  {
+    "code": "AB.11111",
+    "name": "Đào móng công trình bằng thủ công, đất cấp II, độ sâu <= 1.2m",
+    "unit": "100m3",
+    "chapter": "AB - Đào đắp đất đá",
+    "materials": [],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 54.2,
+      "wage_per_day": 285000
+    },
+    "machinery": [],
+    "material_price": 0,
+    "labor_price": 15447000,
+    "machine_price": 0,
+    "total_unit_price": 15447000
+  },
+  {
+    "code": "AB.11122",
+    "name": "Đào móng công trình bằng máy đào gầu 0.8m3, đất cấp II",
+    "unit": "100m3",
+    "chapter": "AB - Đào đắp đất đá",
+    "materials": [],
+    "labor": {
+      "grade": "3.0/7",
+      "days": 3.8,
+      "wage_per_day": 260000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy đào 0.8m3",
+        "shifts": 0.35,
+        "shift_price": 1850000
+      }
+    ],
+    "material_price": 0,
+    "labor_price": 988000,
+    "machine_price": 647500,
+    "total_unit_price": 1635500
+  },
+  {
+    "code": "AB.24111",
+    "name": "Đắp đất công trình bằng thủ công, đầm cóc độ chặt K=0.90",
+    "unit": "100m3",
+    "chapter": "AB - Đào đắp đất đá",
+    "materials": [
+      {
+        "code": "VL_DAT",
+        "name": "Đất đắp công trình",
+        "unit": "m3",
+        "quota": 115.0,
+        "unit_price": 75000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 28.5,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy đầm cóc 70kg",
+        "shifts": 0.45,
+        "shift_price": 320000
+      }
+    ],
+    "material_price": 8625000,
+    "labor_price": 8122500,
+    "machine_price": 144000,
+    "total_unit_price": 16891500
+  },
+  {
+    "code": "AC.11112",
+    "name": "Đóng cọc bê tông cốt thép 250x250mm bằng máy ép cọc thủy lực 120T trên cạn",
+    "unit": "100m",
+    "chapter": "AC - Cọc",
+    "materials": [
+      {
+        "code": "VL_DEM",
+        "name": "Đệm gỗ kê cọc",
+        "unit": "m3",
+        "quota": 0.08,
+        "unit_price": 4200000
+      },
+      {
+        "code": "VL_QUEHAN",
+        "name": "Que hàn nối cọc",
+        "unit": "kg",
+        "quota": 14.5,
+        "unit_price": 35000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 18.2,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy ép cọc thủy lực 120T",
+        "shifts": 1.25,
+        "shift_price": 2800000
+      },
+      {
+        "machine_type": "Máy hàn điện 23kW",
+        "shifts": 0.65,
+        "shift_price": 240000
+      }
+    ],
+    "material_price": 843500,
+    "labor_price": 5187000,
+    "machine_price": 3656000,
+    "total_unit_price": 9686500
+  },
+  {
+    "code": "AF.11111",
+    "name": "Bê tông lót móng đá 4x6, vữa xi măng PCB40 mác 100",
+    "unit": "m3",
+    "chapter": "AF - Bê tông & ván khuôn",
+    "materials": [
+      {
+        "code": "VL01",
+        "name": "Xi măng PCB40",
+        "unit": "kg",
+        "quota": 215.0,
+        "unit_price": 1750
+      },
+      {
+        "code": "VL02",
+        "name": "Cát vàng đổ bê tông",
+        "unit": "m3",
+        "quota": 0.52,
+        "unit_price": 380000
+      },
+      {
+        "code": "VL_DA46",
+        "name": "Đá 4x6",
+        "unit": "m3",
+        "quota": 0.88,
+        "unit_price": 260000
+      },
+      {
+        "code": "VL_NUOC",
+        "name": "Nước sạch",
+        "unit": "lít",
+        "quota": 175.0,
+        "unit_price": 25
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 1.15,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy trộn bê tông 250L",
+        "shifts": 0.08,
+        "shift_price": 280000
+      }
+    ],
+    "material_price": 807025,
+    "labor_price": 327750,
+    "machine_price": 22400,
+    "total_unit_price": 1157175
+  },
+  {
+    "code": "AF.12210",
+    "name": "Bê tông móng thương phẩm đá 1x2, mác 250, đổ bằng máy bơm bê tông",
+    "unit": "m3",
+    "chapter": "AF - Bê tông & ván khuôn",
+    "materials": [
+      {
+        "code": "VL_BTM250",
+        "name": "Bê tông thương phẩm mác 250 R28",
+        "unit": "m3",
+        "quota": 1.02,
+        "unit_price": 1180000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 0.78,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy đầm dùi 1.5kW",
+        "shifts": 0.07,
+        "shift_price": 190000
+      },
+      {
+        "machine_type": "Máy bơm bê tông 50m3/h",
+        "shifts": 0.035,
+        "shift_price": 3200000
+      }
+    ],
+    "material_price": 1203600,
+    "labor_price": 222300,
+    "machine_price": 125300,
+    "total_unit_price": 1551200
+  },
+  {
+    "code": "AF.12310",
+    "name": "Bê tông cột thương phẩm đá 1x2, mác 300, đổ bằng máy bơm bê tông",
+    "unit": "m3",
+    "chapter": "AF - Bê tông & ván khuôn",
+    "materials": [
+      {
+        "code": "VL_BTM300",
+        "name": "Bê tông thương phẩm mác 300 R28",
+        "unit": "m3",
+        "quota": 1.025,
+        "unit_price": 1260000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 1.12,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy đầm dùi 1.5kW",
+        "shifts": 0.09,
+        "shift_price": 190000
+      },
+      {
+        "machine_type": "Máy bơm bê tông 50m3/h",
+        "shifts": 0.045,
+        "shift_price": 3200000
+      }
+    ],
+    "material_price": 1291500,
+    "labor_price": 319200,
+    "machine_price": 161100,
+    "total_unit_price": 1771800
+  },
+  {
+    "code": "AF.12410",
+    "name": "Bê tông dầm, giằng, sàn thương phẩm đá 1x2 mác 300",
+    "unit": "m3",
+    "chapter": "AF - Bê tông & ván khuôn",
+    "materials": [
+      {
+        "code": "VL_BTM300",
+        "name": "Bê tông thương phẩm mác 300 R28",
+        "unit": "m3",
+        "quota": 1.02,
+        "unit_price": 1260000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 0.85,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy đầm dùi 1.5kW",
+        "shifts": 0.065,
+        "shift_price": 190000
+      },
+      {
+        "machine_type": "Máy bơm bê tông",
+        "shifts": 0.035,
+        "shift_price": 3200000
+      }
+    ],
+    "material_price": 1285200,
+    "labor_price": 242250,
+    "machine_price": 124350,
+    "total_unit_price": 1651800
+  },
+  {
+    "code": "AF.61111",
+    "name": "Sản xuất, lắp dựng cốt thép móng, đường kính thanh <= 10mm (CB240-T)",
+    "unit": "tấn",
+    "chapter": "AF - Cốt thép",
+    "materials": [
+      {
+        "code": "VL_THEPD10",
+        "name": "Thép cuộn tròn trơn d<=10 CB240",
+        "unit": "tấn",
+        "quota": 1.025,
+        "unit_price": 15600000
+      },
+      {
+        "code": "VL_DAYBUOC",
+        "name": "Dây thép buộc 1mm",
+        "unit": "kg",
+        "quota": 15.0,
+        "unit_price": 22000
+      },
+      {
+        "code": "VL_CONKE",
+        "name": "Con kê bê tông đúc sẵn",
+        "unit": "viên",
+        "quota": 180.0,
+        "unit_price": 1500
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 8.5,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy cắt uốn thép 5kW",
+        "shifts": 0.45,
+        "shift_price": 350000
+      }
+    ],
+    "material_price": 16590000,
+    "labor_price": 2422500,
+    "machine_price": 157500,
+    "total_unit_price": 19170000
+  },
+  {
+    "code": "AF.61211",
+    "name": "Sản xuất, lắp dựng cốt thép dầm, cột, sàn, đường kính thanh <= 18mm (CB300-V)",
+    "unit": "tấn",
+    "chapter": "AF - Cốt thép",
+    "materials": [
+      {
+        "code": "VL04",
+        "name": "Thép thanh vằn d10-d18 CB300",
+        "unit": "tấn",
+        "quota": 1.025,
+        "unit_price": 15800000
+      },
+      {
+        "code": "VL_DAYBUOC",
+        "name": "Dây thép buộc 1mm",
+        "unit": "kg",
+        "quota": 12.0,
+        "unit_price": 22000
+      },
+      {
+        "code": "VL_QUEHAN",
+        "name": "Que hàn E42",
+        "unit": "kg",
+        "quota": 4.5,
+        "unit_price": 35000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 7.8,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy cắt uốn thép",
+        "shifts": 0.4,
+        "shift_price": 350000
+      },
+      {
+        "machine_type": "Máy hàn điện 23kW",
+        "shifts": 0.25,
+        "shift_price": 240000
+      }
+    ],
+    "material_price": 16616500,
+    "labor_price": 2223000,
+    "machine_price": 200000,
+    "total_unit_price": 19039500
+  },
+  {
+    "code": "AF.81111",
+    "name": "Sản xuất, lắp dựng ván khuôn móng bằng ván ép phủ phim",
+    "unit": "100m2",
+    "chapter": "AF - Ván khuôn",
+    "materials": [
+      {
+        "code": "VL08",
+        "name": "Ván ép phủ phim 18mm luân chuyển 5 lần",
+        "unit": "m2",
+        "quota": 25.0,
+        "unit_price": 320000
+      },
+      {
+        "code": "VL_XAGO",
+        "name": "Hộp kẽm 50x50x1.4 làm xà gồ đỡ",
+        "unit": "m",
+        "quota": 110.0,
+        "unit_price": 38000
+      },
+      {
+        "code": "VL_TIREN",
+        "name": "Ty ren D12 và bát chuồn luân chuyển",
+        "unit": "bộ",
+        "quota": 45.0,
+        "unit_price": 28000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 24.5,
+      "wage_per_day": 285000
+    },
+    "machinery": [],
+    "material_price": 13440000,
+    "labor_price": 6982500,
+    "machine_price": 0,
+    "total_unit_price": 20422500
+  },
+  {
+    "code": "AF.82111",
+    "name": "Sản xuất, lắp dựng ván khuôn cột, dầm, sàn bằng ván phủ phim khung thép giáo nêm",
+    "unit": "100m2",
+    "chapter": "AF - Ván khuôn",
+    "materials": [
+      {
+        "code": "VL08",
+        "name": "Ván ép phủ phim 18mm",
+        "unit": "m2",
+        "quota": 28.0,
+        "unit_price": 320000
+      },
+      {
+        "code": "VL_GIAONEM",
+        "name": "Khung giàn giáo nêm hoàn thiện",
+        "unit": "bộ",
+        "quota": 65.0,
+        "unit_price": 95000
+      },
+      {
+        "code": "VL_XAGO",
+        "name": "Xà gồ thép hộp",
+        "unit": "m",
+        "quota": 140.0,
+        "unit_price": 38000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 32.0,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Vận thăng lồng 1000kg",
+        "shifts": 0.45,
+        "shift_price": 850000
+      }
+    ],
+    "material_price": 20455000,
+    "labor_price": 9120000,
+    "machine_price": 382500,
+    "total_unit_price": 29957500
+  },
+  {
+    "code": "AE.11110",
+    "name": "Xây tường thẳng gạch đất sét nung tuynel 2 lỗ dày <= 11cm, vữa XM mác 75",
+    "unit": "m3",
+    "chapter": "AE - Xây gạch",
+    "materials": [
+      {
+        "code": "VL05",
+        "name": "Gạch tuynel 2 lỗ 6.5x10.5x22cm",
+        "unit": "viên",
+        "quota": 625.0,
+        "unit_price": 1450
+      },
+      {
+        "code": "VL01",
+        "name": "Xi măng PCB40",
+        "unit": "kg",
+        "quota": 68.0,
+        "unit_price": 1750
+      },
+      {
+        "code": "VL_CATMIN",
+        "name": "Cát mịn xây trát",
+        "unit": "m3",
+        "quota": 0.28,
+        "unit_price": 280000
+      },
+      {
+        "code": "VL_NUOC",
+        "name": "Nước sạch",
+        "unit": "lít",
+        "quota": 75.0,
+        "unit_price": 25
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 1.85,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy trộn vữa 80L",
+        "shifts": 0.05,
+        "shift_price": 180000
+      }
+    ],
+    "material_price": 1105525,
+    "labor_price": 527250,
+    "machine_price": 9000,
+    "total_unit_price": 1641775
+  },
+  {
+    "code": "AE.11120",
+    "name": "Xây tường bao che gạch tuynel 2 lỗ dày > 11cm (tường 220), vữa XM mác 75",
+    "unit": "m3",
+    "chapter": "AE - Xây gạch",
+    "materials": [
+      {
+        "code": "VL05",
+        "name": "Gạch tuynel 2 lỗ 6.5x10.5x22cm",
+        "unit": "viên",
+        "quota": 570.0,
+        "unit_price": 1450
+      },
+      {
+        "code": "VL01",
+        "name": "Xi măng PCB40",
+        "unit": "kg",
+        "quota": 75.0,
+        "unit_price": 1750
+      },
+      {
+        "code": "VL_CATMIN",
+        "name": "Cát mịn xây trát",
+        "unit": "m3",
+        "quota": 0.29,
+        "unit_price": 280000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 1.62,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy trộn vữa 80L",
+        "shifts": 0.05,
+        "shift_price": 180000
+      }
+    ],
+    "material_price": 1038950,
+    "labor_price": 461700,
+    "machine_price": 9000,
+    "total_unit_price": 1509650
+  },
+  {
+    "code": "AK.11111",
+    "name": "Trát tường trong nhà chiều dày 1.5cm, vữa xi măng mác 75",
+    "unit": "m2",
+    "chapter": "AK - Hoàn thiện",
+    "materials": [
+      {
+        "code": "VL01",
+        "name": "Xi măng PCB40",
+        "unit": "kg",
+        "quota": 5.45,
+        "unit_price": 1750
+      },
+      {
+        "code": "VL_CATMIN",
+        "name": "Cát mịn sàng kỹ",
+        "unit": "m3",
+        "quota": 0.021,
+        "unit_price": 280000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 0.22,
+      "wage_per_day": 285000
+    },
+    "machinery": [],
+    "material_price": 15417,
+    "labor_price": 62700,
+    "machine_price": 0,
+    "total_unit_price": 78117
+  },
+  {
+    "code": "AK.11121",
+    "name": "Trát tường ngoài nhà chiều dày 1.5cm, vữa xi măng mác 75",
+    "unit": "m2",
+    "chapter": "AK - Hoàn thiện",
+    "materials": [
+      {
+        "code": "VL01",
+        "name": "Xi măng PCB40",
+        "unit": "kg",
+        "quota": 5.75,
+        "unit_price": 1750
+      },
+      {
+        "code": "VL_CATMIN",
+        "name": "Cát mịn sàng kỹ",
+        "unit": "m3",
+        "quota": 0.022,
+        "unit_price": 280000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 0.29,
+      "wage_per_day": 285000
+    },
+    "machinery": [],
+    "material_price": 16222,
+    "labor_price": 82650,
+    "machine_price": 0,
+    "total_unit_price": 98872
+  },
+  {
+    "code": "AK.51111",
+    "name": "Lát nền sàn nhà bằng gạch ceramic kích thước 600x600mm, vữa xi măng mác 75",
+    "unit": "m2",
+    "chapter": "AK - Hoàn thiện",
+    "materials": [
+      {
+        "code": "VL_CERAMIC60",
+        "name": "Gạch ceramic bóng kiếng 600x600",
+        "unit": "m2",
+        "quota": 1.03,
+        "unit_price": 210000
+      },
+      {
+        "code": "VL01",
+        "name": "Xi măng PCB40",
+        "unit": "kg",
+        "quota": 7.2,
+        "unit_price": 1750
+      },
+      {
+        "code": "VL_KEOKERO",
+        "name": "Keo chà ron chống rêu mốc",
+        "unit": "kg",
+        "quota": 0.35,
+        "unit_price": 32000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 0.35,
+      "wage_per_day": 285000
+    },
+    "machinery": [],
+    "material_price": 240100,
+    "labor_price": 99750,
+    "machine_price": 0,
+    "total_unit_price": 339850
+  },
+  {
+    "code": "AK.61111",
+    "name": "Ốp gạch men tường vệ sinh, kích thước 300x600mm",
+    "unit": "m2",
+    "chapter": "AK - Hoàn thiện",
+    "materials": [
+      {
+        "code": "VL_OPMEN",
+        "name": "Gạch ốp tường men bóng 300x600",
+        "unit": "m2",
+        "quota": 1.04,
+        "unit_price": 185000
+      },
+      {
+        "code": "VL_KEOOP",
+        "name": "Keo dán gạch Weber/Sika",
+        "unit": "kg",
+        "quota": 4.5,
+        "unit_price": 14000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 0.42,
+      "wage_per_day": 285000
+    },
+    "machinery": [],
+    "material_price": 255400,
+    "labor_price": 119700,
+    "machine_price": 0,
+    "total_unit_price": 375100
+  },
+  {
+    "code": "AK.81111",
+    "name": "Sơn nước tường trong nhà 1 lớp lót, 2 lớp phủ hoàn thiện Dulux/Kova",
+    "unit": "m2",
+    "chapter": "AK - Hoàn thiện",
+    "materials": [
+      {
+        "code": "VL_BOTBA",
+        "name": "Bột bả tường trong nhà",
+        "unit": "kg",
+        "quota": 1.25,
+        "unit_price": 8500
+      },
+      {
+        "code": "VL06",
+        "name": "Sơn lót kháng kiềm nội thất",
+        "unit": "kg",
+        "quota": 0.12,
+        "unit_price": 48000
+      },
+      {
+        "code": "VL_SONPHU",
+        "name": "Sơn nước phủ màu cao cấp",
+        "unit": "kg",
+        "quota": 0.18,
+        "unit_price": 75000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 0.18,
+      "wage_per_day": 285000
+    },
+    "machinery": [],
+    "material_price": 29885,
+    "labor_price": 51300,
+    "machine_price": 0,
+    "total_unit_price": 81185
+  },
+  {
+    "code": "AI.11111",
+    "name": "Sản xuất và lắp dựng kết cấu thép dầm, xà gồ, giàn mái thép hình I, U, V",
+    "unit": "tấn",
+    "chapter": "AI - Kết cấu kim loại",
+    "materials": [
+      {
+        "code": "VL_THEPHINH",
+        "name": "Thép hình SS400 nhập khẩu",
+        "unit": "tấn",
+        "quota": 1.04,
+        "unit_price": 18200000
+      },
+      {
+        "code": "VL_BULONG",
+        "name": "Bulong liên kết cường độ cao 8.8",
+        "unit": "kg",
+        "quota": 18.0,
+        "unit_price": 42000
+      },
+      {
+        "code": "VL_SONCHONGRIS",
+        "name": "Sơn chống rỉ epoxy 2 thành phần",
+        "unit": "kg",
+        "quota": 12.0,
+        "unit_price": 125000
+      }
+    ],
+    "labor": {
+      "grade": "4.0/7",
+      "days": 9.2,
+      "wage_per_day": 310000
+    },
+    "machinery": [
+      {
+        "machine_type": "Cần trục bánh lốp 25T",
+        "shifts": 0.28,
+        "shift_price": 4500000
+      },
+      {
+        "machine_type": "Máy hàn điện 23kW",
+        "shifts": 0.65,
+        "shift_price": 240000
+      }
+    ],
+    "material_price": 21184000,
+    "labor_price": 2852000,
+    "machine_price": 1416000,
+    "total_unit_price": 25452000
+  },
+  {
+    "code": "BB.11111",
+    "name": "Lắp đặt đường ống cấp nước nóng lạnh PPR D32 chịu áp lực",
+    "unit": "m",
+    "chapter": "BB - Cấp thoát nước",
+    "materials": [
+      {
+        "code": "VL_ONGPPR32",
+        "name": "Ống nước PPR PN20 D32 Tiền Phong",
+        "unit": "m",
+        "quota": 1.03,
+        "unit_price": 46000
+      },
+      {
+        "code": "VL_PHUKIENPPR",
+        "name": "Cút, tê, măng xông ren đồng PPR",
+        "unit": "cái",
+        "quota": 0.45,
+        "unit_price": 38000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 0.16,
+      "wage_per_day": 285000
+    },
+    "machinery": [
+      {
+        "machine_type": "Máy hàn nhiệt ống PPR",
+        "shifts": 0.02,
+        "shift_price": 120000
+      }
+    ],
+    "material_price": 64480,
+    "labor_price": 45600,
+    "machine_price": 2400,
+    "total_unit_price": 112480
+  },
+  {
+    "code": "BB.21111",
+    "name": "Lắp đặt đường ống thoát nước thải trục đứng uPVC D110 Class 2",
+    "unit": "m",
+    "chapter": "BB - Cấp thoát nước",
+    "materials": [
+      {
+        "code": "VL09",
+        "name": "Ống nhựa uPVC D110 Class 2 Tiền Phong",
+        "unit": "m",
+        "quota": 1.025,
+        "unit_price": 85000
+      },
+      {
+        "code": "VL_KEOUPVC",
+        "name": "Keo dán ống uPVC chuyên dụng",
+        "unit": "tuýp",
+        "quota": 0.08,
+        "unit_price": 35000
+      },
+      {
+        "code": "VL_DAIOM",
+        "name": "Đai ôm treo ống mạ kẽm",
+        "unit": "cái",
+        "quota": 1.2,
+        "unit_price": 12000
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 0.24,
+      "wage_per_day": 285000
+    },
+    "machinery": [],
+    "material_price": 104325,
+    "labor_price": 68400,
+    "machine_price": 0,
+    "total_unit_price": 172725
+  },
+  {
+    "code": "BA.11111",
+    "name": "Lắp đặt dây dẫn điện Cu/PVC 2x2.5mm2 luồn trong ống ghen chìm tường",
+    "unit": "100m",
+    "chapter": "BA - Điện",
+    "materials": [
+      {
+        "code": "VL10",
+        "name": "Dây đồng bọc nhựa PVC Cadisun 2x2.5",
+        "unit": "m",
+        "quota": 105.0,
+        "unit_price": 18500
+      },
+      {
+        "code": "VL_ONGGHEN",
+        "name": "Ống luồn dây chống cháy D20",
+        "unit": "m",
+        "quota": 102.0,
+        "unit_price": 8500
+      }
+    ],
+    "labor": {
+      "grade": "3.5/7",
+      "days": 3.8,
+      "wage_per_day": 285000
+    },
+    "machinery": [],
+    "material_price": 2809500,
+    "labor_price": 1083000,
+    "machine_price": 0,
+    "total_unit_price": 3892500
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "Dự toán F1 Pro - Quản lý Dự toán, Dự thầu, Thẩm tra & Quyết toán",
+  "description": "Phần mềm dự toán xây dựng chuẩn định mức BXD: Lập dự toán, Phân tích vật tư, Đơn giá chi tiết, Dự thầu, Thẩm tra sai lệch, Quyết toán 03a/03b, Tiến độ Gantt, Đấu thầu E-GP, và Xuất mã nguồn Python / REST API.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,5 @@
+# Các thư viện tùy chọn (Phần mềm có thể chạy hoàn toàn bằng Python Standard Library)
+openpyxl>=3.1.2     # Phục vụ đọc/ghi file Excel .xlsx đa sheet
+fastapi>=0.110.0    # Máy chủ REST API hiệu năng cao (tùy chọn)
+uvicorn>=0.28.0     # ASGI Server cho FastAPI (tùy chọn)
+pydantic>=2.6.0     # Kiểm tra kiểu dữ liệu (tùy chọn)

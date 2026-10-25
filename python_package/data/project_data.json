@@ -1,0 +1,164 @@
+{
+  "settings": {
+    "projectName": "Tòa nhà Văn phòng Nanosoft Tower (5 Tầng)",
+    "contractor": "Công ty Cổ phần Xây dựng & Công nghệ F1 Việt Nam",
+    "investor": "Ban Quản lý Dự án Đầu tư Xây dựng Hà Nội",
+    "locationProvince": "Hà Nội",
+    "salaryRegion": "I",
+    "projectType": "civil",
+    "vatRate": 0.1,
+    "standardCircular": "Thông tư 12/2021/TT-BXD & TT 11/2021/TT-BXD"
+  },
+  "categories": [
+    { "id": "cat-1", "name": "Hạng mục 1: Phần móng và kết cấu ngầm" },
+    { "id": "cat-2", "name": "Hạng mục 2: Phần thân bê tông cốt thép" },
+    { "id": "cat-3", "name": "Hạng mục 3: Xây thô, hoàn thiện & M&E" }
+  ],
+  "items": [
+    {
+      "id": "w-1", "stt": 1, "type": "work", "categoryId": "cat-1",
+      "code": "AA.11111", "name": "Phát hoang dọn dẹp mặt bằng bằng thủ công",
+      "unit": "100m2", "quantity": 4.5, "unitPriceMaterial": 0, "unitPriceLabor": 185000, "unitPriceMachine": 0,
+      "subCalculations": [{ "id": "sub-1", "name": "Khu đất xây dựng", "expression": "15.0 * 30.0 / 100", "quantity": 4.5 }],
+      "materials": [],
+      "labors": [{ "code": "NC_3.0", "name": "Nhân công bậc 3.0/7", "unit": "công", "norm": 0.74, "price": 250000, "rank": "3.0/7" }],
+      "machines": []
+    },
+    {
+      "id": "w-2", "stt": 2, "type": "work", "categoryId": "cat-1",
+      "code": "AB.21121", "name": "Đào hố móng cột độc lập, sâu <= 1m, đất cấp II",
+      "unit": "m3", "quantity": 68.4, "unitPriceMaterial": 0, "unitPriceLabor": 245000, "unitPriceMachine": 0,
+      "subCalculations": [
+        { "id": "sub-2-1", "name": "Móng M1 (12 hố)", "expression": "12 * 1.8 * 1.8 * 1.2", "quantity": 46.656 },
+        { "id": "sub-2-2", "name": "Móng M2 (6 hố)", "expression": "6 * 1.5 * 1.5 * 1.1", "quantity": 14.85 }
+      ],
+      "materials": [],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 0.85, "price": 288324, "rank": "3.5/7" }],
+      "machines": []
+    },
+    {
+      "id": "w-3", "stt": 3, "type": "work", "categoryId": "cat-1",
+      "code": "AF.11111", "name": "Bê tông lót móng đá 4x6 mác 100, vữa XM PC30",
+      "unit": "m3", "quantity": 6.8, "unitPriceMaterial": 785000, "unitPriceLabor": 260000, "unitPriceMachine": 38000,
+      "subCalculations": [{ "id": "sub-3-1", "name": "Lót móng M1", "expression": "12 * 2.0 * 2.0 * 0.1", "quantity": 4.8 }],
+      "materials": [
+        { "code": "VL_XM30", "name": "Xi măng PC30", "unit": "kg", "norm": 198, "price": 1650, "monthlyPrice": 1750 },
+        { "code": "VL_CATV", "name": "Cát vàng", "unit": "m3", "norm": 0.52, "price": 280000, "monthlyPrice": 310000 },
+        { "code": "VL_DA46", "name": "Đá 4x6", "unit": "m3", "norm": 0.92, "price": 240000, "monthlyPrice": 260000 }
+      ],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 0.9, "price": 288324, "rank": "3.5/7" }],
+      "machines": [{ "code": "M_TRON", "name": "Máy trộn bê tông 250 lít", "unit": "ca", "norm": 0.12, "price": 315000 }]
+    },
+    {
+      "id": "w-4", "stt": 4, "type": "work", "categoryId": "cat-1",
+      "code": "AF.12210", "name": "Bê tông móng đá 1x2 mác 200, vữa XM PC40",
+      "unit": "m3", "quantity": 38.5, "unitPriceMaterial": 980000, "unitPriceLabor": 320000, "unitPriceMachine": 65000,
+      "subCalculations": [{ "id": "sub-4-1", "name": "Thân móng M1", "expression": "12 * 1.8 * 1.8 * 0.6", "quantity": 23.328 }],
+      "materials": [
+        { "code": "VL_XM40", "name": "Xi măng PC40", "unit": "kg", "norm": 285, "price": 1820, "monthlyPrice": 1950 },
+        { "code": "VL_CATV", "name": "Cát vàng", "unit": "m3", "norm": 0.48, "price": 280000, "monthlyPrice": 310000 },
+        { "code": "VL_DA12", "name": "Đá 1x2", "unit": "m3", "norm": 0.88, "price": 340000, "monthlyPrice": 380000 }
+      ],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 1.11, "price": 288324, "rank": "3.5/7" }],
+      "machines": [
+        { "code": "M_TRON", "name": "Máy trộn bê tông 250 lít", "unit": "ca", "norm": 0.14, "price": 315000 },
+        { "code": "M_DDUI", "name": "Máy đầm dùi 1.5 kW", "unit": "ca", "norm": 0.12, "price": 175000 }
+      ]
+    },
+    {
+      "id": "w-5", "stt": 5, "type": "work", "categoryId": "cat-1",
+      "code": "AF.61120", "name": "Sản xuất, lắp dựng cốt thép móng đường kính <= 18mm",
+      "unit": "tấn", "quantity": 3.45, "unitPriceMaterial": 17400000, "unitPriceLabor": 2950000, "unitPriceMachine": 390000,
+      "subCalculations": [{ "id": "sub-5-1", "name": "Thép móng phi 14-16", "expression": "38.5 * 85 / 1000", "quantity": 3.2725 }],
+      "materials": [
+        { "code": "VL_THEP18", "name": "Thép thanh vằn D<=18mm", "unit": "tấn", "norm": 1.02, "price": 16600000, "monthlyPrice": 17000000 },
+        { "code": "VL_DAYBUOC", "name": "Dây thép buộc 1 ly", "unit": "kg", "norm": 14.0, "price": 22000, "monthlyPrice": 24000 }
+      ],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 10.2, "price": 288324, "rank": "3.5/7" }],
+      "machines": [{ "code": "M_UONTHEP", "name": "Máy cắt uốn thép 5kW", "unit": "ca", "norm": 0.77, "price": 280000 }]
+    },
+    {
+      "id": "w-6", "stt": 6, "type": "work", "categoryId": "cat-2",
+      "code": "AF.12320", "name": "Bê tông cột tiết diện <= 0.1m2 đá 1x2 mác 250, vữa XM PC40",
+      "unit": "m3", "quantity": 28.8, "unitPriceMaterial": 1120000, "unitPriceLabor": 480000, "unitPriceMachine": 85000,
+      "subCalculations": [{ "id": "sub-6-1", "name": "Cột tầng 1 (18 cột)", "expression": "18 * 0.3 * 0.3 * 3.6", "quantity": 5.832 }],
+      "materials": [
+        { "code": "VL_XM40", "name": "Xi măng PC40", "unit": "kg", "norm": 325, "price": 1820, "monthlyPrice": 1950 },
+        { "code": "VL_CATV", "name": "Cát vàng", "unit": "m3", "norm": 0.47, "price": 280000, "monthlyPrice": 310000 },
+        { "code": "VL_DA12", "name": "Đá 1x2", "unit": "m3", "norm": 0.86, "price": 340000, "monthlyPrice": 380000 }
+      ],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 1.66, "price": 288324, "rank": "3.5/7" }],
+      "machines": [{ "code": "M_TRON", "name": "Máy trộn bê tông 250 lít", "unit": "ca", "norm": 0.16, "price": 315000 }]
+    },
+    {
+      "id": "w-7", "stt": 7, "type": "work", "categoryId": "cat-2",
+      "code": "AF.12420", "name": "Bê tông dầm, sàn đá 1x2 mác 250, vữa XM PC40",
+      "unit": "m3", "quantity": 112.5, "unitPriceMaterial": 1095000, "unitPriceLabor": 410000, "unitPriceMachine": 75000,
+      "subCalculations": [{ "id": "sub-7-1", "name": "Sàn 5 tầng", "expression": "5 * 12 * 25 * 0.12", "quantity": 90.0 }],
+      "materials": [
+        { "code": "VL_XM40", "name": "Xi măng PC40", "unit": "kg", "norm": 325, "price": 1820, "monthlyPrice": 1950 },
+        { "code": "VL_CATV", "name": "Cát vàng", "unit": "m3", "norm": 0.47, "price": 280000, "monthlyPrice": 310000 },
+        { "code": "VL_DA12", "name": "Đá 1x2", "unit": "m3", "norm": 0.86, "price": 340000, "monthlyPrice": 380000 }
+      ],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 1.42, "price": 288324, "rank": "3.5/7" }],
+      "machines": [{ "code": "M_TRON", "name": "Máy trộn bê tông 250 lít", "unit": "ca", "norm": 0.15, "price": 315000 }]
+    },
+    {
+      "id": "w-8", "stt": 8, "type": "work", "categoryId": "cat-2",
+      "code": "AF.81210", "name": "Ván khuôn cột, dầm sàn gỗ phủ phim, giáo chống thép",
+      "unit": "100m2", "quantity": 14.2, "unitPriceMaterial": 12500000, "unitPriceLabor": 9800000, "unitPriceMachine": 350000,
+      "subCalculations": [{ "id": "sub-8-1", "name": "Cốp pha sàn 5 tầng", "expression": "5 * 240 / 100", "quantity": 12.0 }],
+      "materials": [{ "code": "VL_VKPHIM", "name": "Ván ép phủ phim 18mm", "unit": "m2", "norm": 135, "price": 68000, "monthlyPrice": 72000 }],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 34.0, "price": 288324, "rank": "3.5/7" }],
+      "machines": [{ "code": "M_TOI", "name": "Tời nâng vật liệu 1 tấn", "unit": "ca", "norm": 0.85, "price": 410000 }]
+    },
+    {
+      "id": "w-9", "stt": 9, "type": "work", "categoryId": "cat-3",
+      "code": "BB.11111", "name": "Xây tường gạch ống 8x8x19 dày 10cm, vữa XM mác 75",
+      "unit": "m3", "quantity": 64.0, "unitPriceMaterial": 1150000, "unitPriceLabor": 520000, "unitPriceMachine": 25000,
+      "subCalculations": [{ "id": "sub-9-1", "name": "Tường ngăn phòng 5 tầng", "expression": "5 * 128 * 0.1", "quantity": 64.0 }],
+      "materials": [
+        { "code": "VL_GACHONG", "name": "Gạch tuynel 8x8x19", "unit": "viên", "norm": 680, "price": 1200, "monthlyPrice": 1350 },
+        { "code": "VL_XM30", "name": "Xi măng PC30", "unit": "kg", "norm": 65, "price": 1650, "monthlyPrice": 1750 }
+      ],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 1.8, "price": 288324, "rank": "3.5/7" }],
+      "machines": [{ "code": "M_TRON", "name": "Máy trộn vữa 150 lít", "unit": "ca", "norm": 0.1, "price": 250000 }]
+    },
+    {
+      "id": "w-10", "stt": 10, "type": "work", "categoryId": "cat-3",
+      "code": "AK.51110", "name": "Trát tường trong nhà dày 1.5cm vữa XM mác 75",
+      "unit": "m2", "quantity": 1280.0, "unitPriceMaterial": 42000, "unitPriceLabor": 68000, "unitPriceMachine": 3500,
+      "subCalculations": [{ "id": "sub-10-1", "name": "Trát 2 mặt tường", "expression": "64.0 / 0.1 * 2", "quantity": 1280.0 }],
+      "materials": [{ "code": "VL_XM30", "name": "Xi măng PC30", "unit": "kg", "norm": 5.8, "price": 1650, "monthlyPrice": 1750 }],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 0.235, "price": 288324, "rank": "3.5/7" }],
+      "machines": []
+    },
+    {
+      "id": "w-11", "stt": 11, "type": "work", "categoryId": "cat-3",
+      "code": "AK.81110", "name": "Lát nền gạch ceramic 600x600 vữa xi măng mác 75",
+      "unit": "m2", "quantity": 750.0, "unitPriceMaterial": 185000, "unitPriceLabor": 75000, "unitPriceMachine": 3500,
+      "subCalculations": [{ "id": "sub-11-1", "name": "Nền sảnh và văn phòng", "expression": "5 * 150", "quantity": 750.0 }],
+      "materials": [{ "code": "VL_GACH60", "name": "Gạch ceramic 600x600", "unit": "m2", "norm": 1.05, "price": 145000, "monthlyPrice": 165000 }],
+      "labors": [{ "code": "NC_4.0", "name": "Nhân công bậc 4.0/7", "unit": "công", "norm": 0.245, "price": 305000, "rank": "4.0/7" }],
+      "machines": []
+    },
+    {
+      "id": "w-12", "stt": 12, "type": "work", "categoryId": "cat-3",
+      "code": "AK.91110", "name": "Sơn tường trong nhà 1 nước lót 2 nước phủ Maxilite",
+      "unit": "m2", "quantity": 1280.0, "unitPriceMaterial": 38000, "unitPriceLabor": 32000, "unitPriceMachine": 0,
+      "subCalculations": [{ "id": "sub-12-1", "name": "Diện tích sơn", "expression": "1280.0", "quantity": 1280.0 }],
+      "materials": [{ "code": "VL_SONPHU", "name": "Sơn phủ Maxilite", "unit": "kg", "norm": 0.22, "price": 65000, "monthlyPrice": 70000 }],
+      "labors": [{ "code": "NC_3.5", "name": "Nhân công bậc 3.5/7", "unit": "công", "norm": 0.11, "price": 288324, "rank": "3.5/7" }],
+      "machines": []
+    },
+    {
+      "id": "w-13", "stt": 13, "type": "work", "categoryId": "cat-3",
+      "code": "AL.21110", "name": "Kéo rải dây điện đôi Cu/PVC 2x2.5mm2 luồn ống gen",
+      "unit": "100m", "quantity": 24.5, "unitPriceMaterial": 1850000, "unitPriceLabor": 780000, "unitPriceMachine": 0,
+      "subCalculations": [{ "id": "sub-13-1", "name": "Dây điện", "expression": "2450 / 100", "quantity": 24.5 }],
+      "materials": [{ "code": "VL_DAYDIEN", "name": "Dây điện Cadivi 2x2.5", "unit": "m", "norm": 105, "price": 14500, "monthlyPrice": 15500 }],
+      "labors": [{ "code": "NC_4.0", "name": "Thợ điện bậc 4.0/7", "unit": "công", "norm": 2.55, "price": 305000, "rank": "4.0/7" }],
+      "machines": []
+    }
+  ]
+}

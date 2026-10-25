@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="HeaderTitle">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="Calibri" ss:Size="14" ss:Bold="1" ss:Color="#1E3A8A"/>
+  </Style>
+  <Style ss:ID="SubTitle">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="Calibri" ss:Size="11" ss:Italic="1" ss:Color="#475569"/>
+  </Style>
+  <Style ss:ID="TableHeader">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" ss:Size="10" ss:Bold="1" ss:Color="#FFFFFF"/>
+   <Interior ss:Color="#1E40AF" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="CategoryHeader">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Calibri" ss:Size="11" ss:Bold="1" ss:Color="#0F172A"/>
+   <Interior ss:Color="#E2E8F0" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="DataCell">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="DataNumber">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="DataQuantity">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <NumberFormat ss:Format="#,##0.00"/>
+  </Style>
+  <Style ss:ID="TotalRow">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"/>
+   </Borders>
+   <Font ss:FontName="Calibri" ss:Size="11" ss:Bold="1" ss:Color="#991B1B"/>
+   <Interior ss:Color="#FEE2E2" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+ </Styles>
+
+ <!-- SHEET 1: BẢNG CÔNG TRÌNH -->
+ <Worksheet ss:Name="Bảng Công Trình">
+  <Table ss:DefaultColumnWidth="65" ss:DefaultRowHeight="20">
+   <Column ss:Width="40"/>
+   <Column ss:Width="80"/>
+   <Column ss:Width="300"/>
+   <Column ss:Width="50"/>
+   <Column ss:Width="70"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="120"/>
+
+   <Row ss:Height="26">
+    <Cell ss:MergeAcross="9" ss:StyleID="HeaderTitle"><Data ss:Type="String">DỰ TOÁN F1 PRO - BẢNG ĐƠN GIÁ XÂY DỰNG CÔNG TRÌNH</Data></Cell>
+   </Row>
+   <Row ss:Height="18">
+    <Cell ss:MergeAcross="9" ss:StyleID="SubTitle"><Data ss:Type="String">Công trình: Tòa nhà Văn phòng Nanosoft Tower (5 Tầng) | Địa điểm: Khu Công nghệ cao Hòa Lạc, Hà Nội</Data></Cell>
+   </Row>
+   <Row ss:Height="10"/>
+
+   <Row ss:Height="26">
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">STT</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Mã hiệu</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Tên công tác xây dựng</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">ĐVT</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Khối lượng</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">ĐG Vật liệu</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">ĐG Nhân công</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">ĐG Máy TC</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Đơn giá tổng</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Thành tiền (VNĐ)</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AB.11122</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Đào móng công trình bằng máy đào gầu 0.8m3, đất cấp II</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">100m3</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">4.85</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">0.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">988000.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">647500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1635500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">7932175.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AF.11111</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Bê tông lót móng đá 4x6, vữa xi măng PCB40 mác 100</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">m3</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">38.5</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">807025.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">327750.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">22400.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1157175.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">44551238.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AF.12210</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Bê tông móng thương phẩm đá 1x2, mác 250, đổ bằng máy bơm</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">m3</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">168.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1203600.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">222300.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">125300.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1551200.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">260601600.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AF.61111</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Sản xuất, lắp dựng cốt thép móng, đường kính thanh <= 10mm</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">tấn</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">8.45</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">16590000.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">2422500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">157500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">19170000.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">161986500.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AF.81111</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Sản xuất, lắp dựng ván khuôn móng bằng ván ép phủ phim</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">100m2</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">5.2</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">13440000.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">6982500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">0.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">20422500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">106197000.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AF.12310</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Bê tông cột thương phẩm đá 1x2, mác 300, đổ máy bơm</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">m3</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">125.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1291500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">319200.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">161100.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1771800.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">221475000.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AF.12410</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Bê tông dầm, sàn thương phẩm đá 1x2 mác 300</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">m3</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">240.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1285200.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">242250.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">124350.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1651800.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">396432000.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AF.61211</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Sản xuất, lắp dựng cốt thép dầm, cột, sàn d<=18mm CB300</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">tấn</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">24.5</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">16616500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">2223000.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">200000.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">19039500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">466467750.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AF.82111</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Sản xuất, lắp dựng ván khuôn cột dầm sàn ván phủ phim giàn nêm</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">100m2</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">18.5</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">20455000.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">9120000.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">382500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">29957500.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">554213750.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AE.11110</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Xây tường thẳng gạch tuynel 2 lỗ dày <= 11cm, vữa XM M75</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">m3</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">185.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1105525.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">527250.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">9000.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">1641775.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">303728375.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AK.11111</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Trát tường trong nhà chiều dày 1.5cm, vữa XM M75</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">m2</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">1450.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">15417.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">62700.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">0.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">78117.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">113269650.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AK.51111</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Lát nền sàn nhà bằng gạch ceramic 600x600mm</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">m2</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">820.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">240100.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">99750.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">0.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">339850.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">278677000.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">AK.81111</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Sơn nước tường trong nhà 1 lót 2 phủ Dulux</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">m2</Data></Cell>
+    <Cell ss:StyleID="DataQuantity"><Data ss:Type="Number">1450.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">29885.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">51300.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">0.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">81185.0</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">117718250.0</Data></Cell>
+   </Row>
+   <Row ss:Height="24">
+    <Cell ss:MergeAcross="8" ss:StyleID="TotalRow"><Data ss:Type="String">TỔNG CỘNG CHI PHÍ TRỰC TIẾP (T):</Data></Cell>
+    <Cell ss:StyleID="TotalRow"><Data ss:Type="Number">3033250288.0</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+
+ <!-- SHEET 2: TỔNG HỢP VẬT TƯ (THVT) -->
+ <Worksheet ss:Name="Tổng Hợp Vật Tư">
+  <Table ss:DefaultColumnWidth="75">
+   <Column ss:Width="40"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="280"/>
+   <Column ss:Width="60"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+
+   <Row ss:Height="26">
+    <Cell ss:MergeAcross="8" ss:StyleID="HeaderTitle"><Data ss:Type="String">BẢNG TỔNG HỢP VẬT TƯ VÀ BÙ GIÁ THÁNG (THVT)</Data></Cell>
+   </Row>
+   <Row ss:Height="24">
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">STT</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Mã VT</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Tên vật tư, nhân công, máy</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">ĐVT</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Khối lượng</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Giá gốc</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Giá hiện tại</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Thành tiền gốc</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Thành tiền HT</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+
+ <!-- SHEET 3: TỔNG HỢP KINH PHÍ (THKP) -->
+ <Worksheet ss:Name="Tổng Hợp Kinh Phí">
+  <Table ss:DefaultColumnWidth="90">
+   <Column ss:Width="40"/>
+   <Column ss:Width="320"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="140"/>
+
+   <Row ss:Height="26">
+    <Cell ss:MergeAcross="4" ss:StyleID="HeaderTitle"><Data ss:Type="String">BẢNG TỔNG HỢP KINH PHÍ DỰ TOÁN XÂY DỰNG (THKP)</Data></Cell>
+   </Row>
+   <Row ss:Height="18">
+    <Cell ss:MergeAcross="4" ss:StyleID="SubTitle"><Data ss:Type="String">Áp dụng Thông tư 11/2021/TT-BXD &amp; Thông tư 14/2023/TT-BXD</Data></Cell>
+   </Row>
+   <Row ss:Height="24">
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">STT</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Khoản mục chi phí</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Ký hiệu</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Cách tính</Data></Cell>
+    <Cell ss:StyleID="TableHeader"><Data ss:Type="String">Giá trị (VNĐ)</Data></Cell>
+   </Row>
+
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">1</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Chi phí trực tiếp</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">T</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">VL + NC + MTC</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">3033250288.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">2</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Chi phí gián tiếp</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">GT</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Chung + Nhà tạm + KTXĐ</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">303325029.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">3</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Thu nhập chịu thuế tính trước</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">TL</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">(T + GT) * 5.5%</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">183511642.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">4</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Chi phí xây dựng trước thuế</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">G</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">T + GT + TL</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">3520086959.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">5</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Thuế giá trị gia tăng (VAT 10%)</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">VAT</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">G * 10%</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">352008696.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">6</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Chi phí xây dựng sau thuế</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Gxd</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">G + VAT</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">3872095655.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">7</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Chi phí Quản lý dự án</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Gqlda</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Gxd * 2.5%</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">96802391.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">8</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Chi phí Tư vấn ĐTXD</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Gtv</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Gxd * 6.5%</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">251686218.0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">9</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Chi phí Dự phòng (8%)</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Gdp</Data></Cell>
+    <Cell ss:StyleID="DataCell"><Data ss:Type="String">Gdp1 (5%) + Gdp2 (3%)</Data></Cell>
+    <Cell ss:StyleID="DataNumber"><Data ss:Type="Number">343842094.0</Data></Cell>
+   </Row>
+   <Row ss:Height="24">
+    <Cell ss:MergeAcross="3" ss:StyleID="TotalRow"><Data ss:Type="String">TỔNG MỨC ĐẦU TƯ CÔNG TRÌNH (TMĐT):</Data></Cell>
+    <Cell ss:StyleID="TotalRow"><Data ss:Type="Number">4641868271.0</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+</Workbook>
