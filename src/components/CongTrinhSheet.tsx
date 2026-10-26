@@ -35,6 +35,7 @@ interface CongTrinhSheetProps {
   undoActionName?: string;
   redoActionName?: string;
   onBatchUpdateItems?: (newItems: WorkItem[], description: string) => void;
+  onAddWorkItem?: () => void;
 }
 
 const SUGGESTED_CATEGORY_NAMES = [
@@ -136,6 +137,7 @@ export const CongTrinhSheet: React.FC<CongTrinhSheetProps> = ({
   undoActionName,
   redoActionName,
   onBatchUpdateItems,
+  onAddWorkItem,
 }) => {
   const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
   const [isSpellCheckEnabled, setIsSpellCheckEnabled] = useState<boolean>(true);
@@ -405,6 +407,149 @@ export const CongTrinhSheet: React.FC<CongTrinhSheetProps> = ({
       onUpdateCategory?.(catId, { name: editingCategoryName.trim() });
     }
     setEditingCategoryId(null);
+  };
+
+  // Danh sách công tác hiển thị theo thứ tự từ trên xuống dưới
+  const getOrderedVisibleItems = (): WorkItem[] => {
+    const list: WorkItem[] = [];
+    categories.forEach(cat => {
+      if (collapsedCategories[cat.id]) return;
+      const cItems = filteredItems.filter(i => (i.categoryId || categories[0]?.id) === cat.id);
+      const sorted = sortItems(cItems);
+      list.push(...sorted);
+    });
+    return list;
+  };
+
+  // Điều hướng bằng phím Enter & Mũi tên lên/xuống (Chuẩn Excel / Dự toán F1)
+  const handleCellKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    col: 'name' | 'unit' | 'quantity' | 'mat' | 'lab' | 'mac',
+    currentItemId: string
+  ) => {
+    if (e.key === 'Enter' || (e.key === 'ArrowDown' && (col === 'quantity' || e.altKey))) {
+      if (e.key === 'ArrowDown' && col !== 'quantity' && !e.altKey) {
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+
+      const visibleList = getOrderedVisibleItems();
+      const currentIndex = visibleList.findIndex(i => i.id === currentItemId);
+
+      if (currentIndex !== -1 && currentIndex < visibleList.length - 1) {
+        const nextItem = visibleList[currentIndex + 1];
+        onSelectItem(nextItem);
+        setTimeout(() => {
+          const nextInput = document.getElementById(`cell-${col}-${nextItem.id}`) as HTMLInputElement | null;
+          if (nextInput) {
+            nextInput.focus();
+            nextInput.select();
+            nextInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }, 30);
+      } else if (currentIndex === visibleList.length - 1 && onAddWorkItem) {
+        onAddWorkItem();
+      }
+    } else if (
+      (e.key === 'Enter' && e.shiftKey) ||
+      (e.key === 'ArrowUp' && (col === 'quantity' || e.altKey))
+    ) {
+      if (e.key === 'ArrowUp' && col !== 'quantity' && !e.altKey) {
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+
+      const visibleList = getOrderedVisibleItems();
+      const currentIndex = visibleList.findIndex(i => i.id === currentItemId);
+
+      if (currentIndex > 0) {
+        const prevItem = visibleList[currentIndex - 1];
+        onSelectItem(prevItem);
+        setTimeout(() => {
+          const prevInput = document.getElementById(`cell-${col}-${prevItem.id}`) as HTMLInputElement | null;
+          if (prevInput) {
+            prevInput.focus();
+            prevInput.select();
+            prevInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }, 30);
+      }
+    }
+  };
+
+  // Điều hướng bằng phím Enter trong các dòng diễn giải con dài x rộng x cao
+  const handleSubCalcKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    field: 'name' | 'expression',
+    item: WorkItem,
+    sub: SubCalculation,
+    sIdx: number
+  ) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (field === 'name') {
+        const exprEl = document.getElementById(`sub-expr-${sub.id}`) as HTMLInputElement | null;
+        if (exprEl) {
+          exprEl.focus();
+          exprEl.select();
+        }
+      } else if (field === 'expression') {
+        const totalSubs = item.subCalculations?.length || 0;
+        if (sIdx < totalSubs - 1) {
+          const nextSub = item.subCalculations![sIdx + 1];
+          onSelectItem(item, nextSub);
+          setTimeout(() => {
+            const nextExpr = document.getElementById(`sub-expr-${nextSub.id}`) as HTMLInputElement | null;
+            if (nextExpr) {
+              nextExpr.focus();
+              nextExpr.select();
+              nextExpr.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          }, 30);
+        } else {
+          // Thêm dòng diễn giải con mới và tự động focus
+          onAddSubCalculation(item.id);
+        }
+      }
+    } else if (e.key === 'ArrowDown') {
+      const totalSubs = item.subCalculations?.length || 0;
+      if (sIdx < totalSubs - 1) {
+        e.preventDefault();
+        const nextSub = item.subCalculations![sIdx + 1];
+        onSelectItem(item, nextSub);
+        setTimeout(() => {
+          const targetInput = document.getElementById(`sub-${field}-${nextSub.id}`) as HTMLInputElement | null;
+          if (targetInput) {
+            targetInput.focus();
+            targetInput.select();
+          }
+        }, 30);
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (sIdx > 0) {
+        const prevSub = item.subCalculations![sIdx - 1];
+        onSelectItem(item, prevSub);
+        setTimeout(() => {
+          const targetInput = document.getElementById(`sub-${field}-${prevSub.id}`) as HTMLInputElement | null;
+          if (targetInput) {
+            targetInput.focus();
+            targetInput.select();
+          }
+        }, 30);
+      } else {
+        onSelectItem(item);
+        const parentQty = document.getElementById(`cell-quantity-${item.id}`) as HTMLInputElement | null;
+        if (parentQty) {
+          parentQty.focus();
+          parentQty.select();
+        }
+      }
+    }
   };
 
   // Quét toàn bộ lỗi chính tả chuyên ngành trong danh sách công tác & diễn giải
@@ -970,9 +1115,12 @@ export const CongTrinhSheet: React.FC<CongTrinhSheetProps> = ({
                             <td className="f1-cell px-3 relative">
                               <div className="flex flex-col">
                                 <input
+                                  id={`cell-name-${item.id}`}
                                   type="text"
                                   value={item.name}
+                                  onFocus={(e) => onSelectItem(item)}
                                   onChange={(e) => onUpdateWorkItem(item.id, { name: e.target.value })}
+                                  onKeyDown={(e) => handleCellKeyDown(e, 'name', item.id)}
                                   className={`w-full bg-transparent focus:bg-white focus:outline-hidden px-1 py-0.5 rounded text-slate-900 font-medium ${
                                     itemIssues.length > 0 ? 'border-b-2 border-dashed border-amber-500' : ''
                                   }`}
@@ -1006,42 +1154,74 @@ export const CongTrinhSheet: React.FC<CongTrinhSheetProps> = ({
 
                             <td className="f1-cell text-center text-slate-600">
                               <input
+                                id={`cell-unit-${item.id}`}
                                 type="text"
                                 value={item.unit}
+                                onFocus={(e) => onSelectItem(item)}
                                 onChange={(e) => onUpdateWorkItem(item.id, { unit: e.target.value })}
+                                onKeyDown={(e) => handleCellKeyDown(e, 'unit', item.id)}
                                 className="w-full text-center bg-transparent focus:bg-white focus:outline-hidden px-1 py-0.5 rounded text-slate-700 font-mono text-[11px]"
                               />
                             </td>
                             <td className="f1-cell text-right tabular-nums font-semibold text-slate-900 bg-amber-50/30">
                               <input
+                                id={`cell-quantity-${item.id}`}
                                 type="number"
                                 step="any"
-                                value={item.quantity}
-                                onChange={(e) => onUpdateWorkItem(item.id, { quantity: parseFloat(e.target.value) || 0 })}
-                                className="w-full text-right bg-transparent focus:bg-white focus:outline-hidden px-1 py-0.5 rounded font-mono"
+                                value={item.quantity === 0 ? '' : item.quantity}
+                                placeholder="0"
+                                onFocus={(e) => {
+                                  e.target.select();
+                                  onSelectItem(item);
+                                }}
+                                onChange={(e) => {
+                                  const val = e.target.value;
+                                  onUpdateWorkItem(item.id, { quantity: val === '' ? 0 : parseFloat(val) || 0 });
+                                }}
+                                onKeyDown={(e) => handleCellKeyDown(e, 'quantity', item.id)}
+                                className="w-full text-right bg-transparent focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-blue-500/50 px-1 py-0.5 rounded font-mono font-bold text-slate-900"
+                                title="Nhập số khối lượng, nhấn Enter hoặc Mũi tên xuống để xuống dòng công tác tiếp theo"
                               />
                             </td>
                             <td className="f1-cell text-right tabular-nums text-slate-700">
                               <input
+                                id={`cell-mat-${item.id}`}
                                 type="number"
                                 value={item.unitPriceMaterial}
+                                onFocus={(e) => {
+                                  e.target.select();
+                                  onSelectItem(item);
+                                }}
                                 onChange={(e) => onUpdateWorkItem(item.id, { unitPriceMaterial: parseFloat(e.target.value) || 0 })}
+                                onKeyDown={(e) => handleCellKeyDown(e, 'mat', item.id)}
                                 className="w-full text-right bg-transparent focus:bg-white focus:outline-hidden px-1 py-0.5 rounded font-mono"
                               />
                             </td>
                             <td className="f1-cell text-right tabular-nums text-slate-700">
                               <input
+                                id={`cell-lab-${item.id}`}
                                 type="number"
                                 value={item.unitPriceLabor}
+                                onFocus={(e) => {
+                                  e.target.select();
+                                  onSelectItem(item);
+                                }}
                                 onChange={(e) => onUpdateWorkItem(item.id, { unitPriceLabor: parseFloat(e.target.value) || 0 })}
+                                onKeyDown={(e) => handleCellKeyDown(e, 'lab', item.id)}
                                 className="w-full text-right bg-transparent focus:bg-white focus:outline-hidden px-1 py-0.5 rounded font-mono"
                               />
                             </td>
                             <td className="f1-cell text-right tabular-nums text-slate-700">
                               <input
+                                id={`cell-mac-${item.id}`}
                                 type="number"
                                 value={item.unitPriceMachine}
+                                onFocus={(e) => {
+                                  e.target.select();
+                                  onSelectItem(item);
+                                }}
                                 onChange={(e) => onUpdateWorkItem(item.id, { unitPriceMachine: parseFloat(e.target.value) || 0 })}
+                                onKeyDown={(e) => handleCellKeyDown(e, 'mac', item.id)}
                                 className="w-full text-right bg-transparent focus:bg-white focus:outline-hidden px-1 py-0.5 rounded font-mono"
                               />
                             </td>
@@ -1162,23 +1342,31 @@ export const CongTrinhSheet: React.FC<CongTrinhSheetProps> = ({
                                     <div className="flex items-center gap-2">
                                       <span className="text-slate-400 select-none">-</span>
                                       <input
+                                        id={`sub-name-${sub.id}`}
                                         type="text"
                                         value={sub.name}
+                                        onFocus={(e) => onSelectItem(item, sub)}
                                         onChange={(e) => onUpdateSubCalculation(item.id, sub.id, { name: e.target.value })}
+                                        onKeyDown={(e) => handleSubCalcKeyDown(e, 'name', item, sub, sIdx)}
                                         className={`flex-1 bg-transparent focus:bg-white focus:outline-hidden px-1 py-0.5 rounded text-slate-700 italic ${
                                           subIssues.length > 0 ? 'border-b border-dashed border-amber-500' : ''
                                         }`}
                                       />
                                       <span className="text-slate-400">:</span>
                                       <input
+                                        id={`sub-expr-${sub.id}`}
                                         type="text"
                                         value={sub.expression}
+                                        onFocus={(e) => onSelectItem(item, sub)}
                                         onChange={(e) => {
                                           const expr = e.target.value;
                                           const qty = evaluateMathExpression(expr);
                                           onUpdateSubCalculation(item.id, sub.id, { expression: expr, quantity: qty });
                                         }}
-                                        className="w-48 font-mono bg-transparent focus:bg-white focus:outline-hidden px-1 py-0.5 rounded text-blue-800"
+                                        onKeyDown={(e) => handleSubCalcKeyDown(e, 'expression', item, sub, sIdx)}
+                                        placeholder="Dài * rộng * cao"
+                                        className="w-48 font-mono bg-transparent focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-blue-500/50 px-1 py-0.5 rounded text-blue-800"
+                                        title="Nhập biểu thức kích thước. Nhấn Enter để tự động chèn dòng diễn giải con tiếp theo"
                                       />
                                     </div>
                                     {subIssues.length > 0 && (

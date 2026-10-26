@@ -41,6 +41,15 @@ export const FormulaBar: React.FC<FormulaBarProps> = ({
           type="text"
           value={currentExpression}
           onChange={(e) => onUpdateExpression(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.currentTarget.blur();
+              if (selectedItem) {
+                const qtyInput = document.getElementById(`cell-quantity-${selectedItem.id}`);
+                qtyInput?.focus();
+              }
+            }
+          }}
           placeholder="Nhập công thức diễn giải (Ví dụ: 12 * 1.8 * 1.8 * 0.6 hoặc 2 * (3.5 + 4.2) * 0.22)..."
           className="w-full px-2 py-1 border border-slate-300 rounded bg-slate-50 focus:bg-white focus:outline-hidden focus:ring-1 focus:ring-blue-500 font-mono text-xs text-slate-900"
         />

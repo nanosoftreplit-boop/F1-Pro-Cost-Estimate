@@ -86,6 +86,7 @@ interface HeaderRibbonProps {
   onOpenMultiProjects?: () => void;
   openProjectsCount?: number;
   onDownloadSampleExcel?: () => void;
+  onOpenImportModal?: () => void;
 }
 
 export const HeaderRibbon: React.FC<HeaderRibbonProps> = ({
@@ -127,6 +128,7 @@ export const HeaderRibbon: React.FC<HeaderRibbonProps> = ({
   onOpenMultiProjects,
   openProjectsCount = 1,
   onDownloadSampleExcel,
+  onOpenImportModal,
 }) => {
   const currentProvince = PROVINCES_DATA.find(p => p.name === settings.locationProvince) || PROVINCES_DATA[0];
 
@@ -457,25 +459,38 @@ export const HeaderRibbon: React.FC<HeaderRibbonProps> = ({
             </button>
           )}
 
-          <label className="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded cursor-pointer transition-colors whitespace-nowrap">
-            <Upload className="w-3.5 h-3.5 text-sky-400" />
-            <span>Nhập Excel</span>
-            <input
-              type="file"
-              accept=".xlsx,.xls,.csv"
-              onChange={onImportExcel}
-              className="hidden"
-            />
-          </label>
+          {onOpenImportModal ? (
+            <button
+              type="button"
+              onClick={onOpenImportModal}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 bg-sky-900/80 hover:bg-sky-800 text-sky-200 hover:text-white rounded cursor-pointer transition-colors whitespace-nowrap shadow-xs border border-sky-600/70 font-medium"
+              title="Nhập dữ liệu công trình từ file Excel (.xlsx) với hướng dẫn chuẩn hóa cột và xem trước dữ liệu"
+            >
+              <Upload className="w-3.5 h-3.5 text-sky-400" />
+              <span>Nhập Excel</span>
+            </button>
+          ) : (
+            <label className="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-700 hover:bg-slate-600 text-slate-100 rounded cursor-pointer transition-colors whitespace-nowrap">
+              <Upload className="w-3.5 h-3.5 text-sky-400" />
+              <span>Nhập Excel</span>
+              <input
+                type="file"
+                accept=".xlsx,.xls,.csv"
+                onChange={onImportExcel}
+                className="hidden"
+              />
+            </label>
+          )}
 
           {onDownloadSampleExcel && (
             <button
+              type="button"
               onClick={onDownloadSampleExcel}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-700/80 hover:bg-slate-600 text-slate-200 hover:text-white rounded transition-colors whitespace-nowrap shadow-xs cursor-pointer border border-slate-600/70"
-              title="Tải file Excel mẫu chuẩn (.xlsx) để xem cấu trúc và nhập dữ liệu vào phần mềm"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 hover:text-white rounded transition-colors whitespace-nowrap shadow-xs cursor-pointer border border-emerald-600/80 font-bold"
+              title="Tải file mẫu Excel (.xlsx) có sẵn cấu trúc các cột (Mã hiệu, Tên công tác, Đơn vị, Khối lượng) để chuẩn hóa dữ liệu đầu vào khi import"
             >
-              <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Mẫu Excel</span>
+              <Download className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Tải mẫu Excel (.xlsx)</span>
             </button>
           )}
 

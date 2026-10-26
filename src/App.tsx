@@ -56,6 +56,7 @@ import { ServicePackagesModal } from './components/ServicePackagesModal';
 import { FeatureGatePaywall } from './components/FeatureGatePaywall';
 import { MultiProjectBar } from './components/MultiProjectBar';
 import { MultiProjectManagerModal } from './components/MultiProjectManagerModal';
+import { ExcelImportModal } from './components/ExcelImportModal';
 import { 
   ProjectInstance, 
   createCivilProject, 
@@ -183,7 +184,7 @@ export default function App() {
   const [targetReplaceItemId, setTargetReplaceItemId] = useState<string | null>(null);
   const [targetCategoryIdForNewItem, setTargetCategoryIdForNewItem] = useState<string | null>(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [settingsModalInitialTab, setSettingsModalInitialTab] = useState<'technical' | 'admin_print'>('technical');
+  const [settingsModalInitialTab, setSettingsModalInitialTab] = useState<'technical' | 'admin_print' | 'all_projects'>('technical');
   const [isMonthlyPriceOpen, setIsMonthlyPriceOpen] = useState(false);
   const [isPythonModalOpen, setIsPythonModalOpen] = useState(false);
   const [isAdminPrintOpen, setIsAdminPrintOpen] = useState(false);
@@ -192,6 +193,7 @@ export default function App() {
   const [isAdminApprovalOpen, setIsAdminApprovalOpen] = useState(false);
   const [isServicePackagesOpen, setIsServicePackagesOpen] = useState(false);
   const [isQuickTHKPOpen, setIsQuickTHKPOpen] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
 
   // Phân quyền & Giấy phép sử dụng: Mặc định là Admin HOÀNG HẢI AN (Miễn phí toàn bộ gói)
   const [userLicense, setUserLicense] = useState<UserLicenseState>(() => {
@@ -790,6 +792,160 @@ export default function App() {
       time: new Date().toLocaleTimeString('vi-VN'),
     });
     setTimeout(() => setToast(t => ({ ...t, show: false })), 2500);
+  };
+
+  // Lưu cấu hình dự án (hỗ trợ lưu cho bất kỳ dự án nào từ modal cấu hình)
+  const handleSaveProjectSettings = (targetProjId: string, newSettings: ProjectSettings) => {
+    if (targetProjId === activeProjectId) {
+      setSettings(newSettings);
+    }
+
+    const nextList = projects.map(p => {
+      if (p.id !== targetProjId) return p;
+      return {
+        ...p,
+        name: newSettings.projectName || p.name,
+        settings: newSettings,
+        lastModified: Date.now(),
+      };
+    });
+    setProjects(nextList);
+    localStorage.setItem('f1_pro_multi_projects', JSON.stringify(nextList));
+
+    setToast({
+      show: true,
+      type: 'save',
+      message: 'ĐÃ LƯU CẤU HÌNH DỰ ÁN!',
+      subMessage: `${newSettings.projectName} • Tỉnh: ${newSettings.locationProvince}`,
+      time: new Date().toLocaleTimeString('vi-VN'),
+    });
+    setTimeout(() => setToast(t => ({ ...t, show: false })), 3000);
+  };
+
+  // Áp dụng cấu hình đồng loạt cho toàn bộ các dự án đang mở
+  const handleApplySettingsToAllProjects = (templateSettings: ProjectSettings) => {
+    setSettings(prev => ({
+      ...prev,
+      locationProvince: templateSettings.locationProvince,
+      salaryRegion: templateSettings.salaryRegion,
+      vatRate: templateSettings.vatRate,
+      indirectCostConfig: JSON.parse(JSON.stringify(templateSettings.indirectCostConfig || {})),
+      adminReportConfig: JSON.parse(JSON.stringify(templateSettings.adminReportConfig || {})),
+      contractor: templateSettings.contractor || prev.contractor,
+      investor: templateSettings.investor || prev.investor,
+    }));
+
+    const nextList = projects.map(p => ({
+      ...p,
+      settings: {
+        ...p.settings,
+        locationProvince: templateSettings.locationProvince,
+        salaryRegion: templateSettings.salaryRegion,
+        vatRate: templateSettings.vatRate,
+        indirectCostConfig: JSON.parse(JSON.stringify(templateSettings.indirectCostConfig || {})),
+        adminReportConfig: JSON.parse(JSON.stringify(templateSettings.adminReportConfig || {})),
+        contractor: templateSettings.contractor || p.settings.contractor,
+        investor: templateSettings.investor || p.settings.investor,
+      },
+      lastModified: Date.now(),
+    }));
+    setProjects(nextList);
+    localStorage.setItem('f1_pro_multi_projects', JSON.stringify(nextList));
+
+    setToast({
+      show: true,
+      type: 'save',
+      message: 'ĐÃ ÁP DỤNG CẤU HÌNH ĐỒNG LOẠT!',
+      subMessage: `Đã cập nhật tham số kỹ thuật & mẫu in ấn cho tất cả ${projects.length} dự án`,
+      time: new Date().toLocaleTimeString('vi-VN'),
+    });
+    setTimeout(() => setToast(t => ({ ...t, show: false })), 3500);
+  };
+
+  // Xử lý nạp dữ liệu từ ExcelImportModal
+  const handleImportItems = (
+    importedItems: Partial<WorkItem>[], 
+    mode: 'append' | 'replace' | 'new_project', 
+    fileName?: string
+  ) => {
+    const defaultCatId = categories[0]?.id || 'cat-1';
+    const formattedItems: WorkItem[] = importedItems.map((item, idx) => ({
+      id: item.id || `item-imp-${Date.now()}-${idx}`,
+      stt: idx + 1,
+      type: item.type || 'work',
+      categoryId: item.categoryId || defaultCatId,
+      code: item.code || 'AF.TEMP',
+      name: item.name || 'Công tác nhập từ Excel',
+      unit: item.unit || 'công tác',
+      quantity: Number(item.quantity) || 0,
+      unitPriceMaterial: Number(item.unitPriceMaterial) || 0,
+      unitPriceLabor: Number(item.unitPriceLabor) || 0,
+      unitPriceMachine: Number(item.unitPriceMachine) || 0,
+      materials: item.materials || [],
+      labors: item.labors || [],
+      machines: item.machines || [],
+      subCalculations: item.subCalculations || [],
+      note: item.note || 'Nhập từ file Excel'
+    }));
+
+    if (mode === 'new_project') {
+      const projName = fileName ? `Dự án Import: ${fileName}` : `Dự án Excel Mới #${projects.length + 1}`;
+      const newProj = createBlankProject(projName);
+      newProj.items = formattedItems;
+      const nextList = [...projects, newProj];
+      setProjects(nextList);
+      setActiveProjectId(newProj.id);
+      setItems(formattedItems);
+      setCategories(newProj.categories);
+      setSettings(newProj.settings);
+      setHistoryStack([{ items: formattedItems, categories: newProj.categories, actionName: `Nhập file Excel: ${fileName || 'Mới'}` }]);
+      setHistoryIndex(0);
+      localStorage.setItem('f1_pro_active_project_id', newProj.id);
+      localStorage.setItem('f1_pro_multi_projects', JSON.stringify(nextList));
+
+      setToast({
+        show: true,
+        type: 'save',
+        message: 'ĐÃ TẠO DỰ ÁN MỚI TỪ FILE EXCEL!',
+        subMessage: `${projName} • Đã nạp ${formattedItems.length} công tác`,
+        time: new Date().toLocaleTimeString('vi-VN'),
+      });
+      setTimeout(() => setToast(t => ({ ...t, show: false })), 3500);
+      return;
+    }
+
+    if (mode === 'replace') {
+      setItems(formattedItems);
+      pushHistory(formattedItems, categories, `Nhập thay thế ${formattedItems.length} công tác từ Excel`);
+      setToast({
+        show: true,
+        type: 'save',
+        message: 'ĐÃ THAY THẾ DỮ LIỆU TỪ EXCEL!',
+        subMessage: `Đã nạp thành công ${formattedItems.length} công tác vào dự án`,
+        time: new Date().toLocaleTimeString('vi-VN'),
+      });
+      setTimeout(() => setToast(t => ({ ...t, show: false })), 3500);
+      return;
+    }
+
+    if (mode === 'append') {
+      const maxStt = items.length > 0 ? Math.max(...items.map(i => i.stt || 0)) : 0;
+      const appended = formattedItems.map((item, idx) => ({
+        ...item,
+        stt: maxStt + idx + 1
+      }));
+      const updated = [...items, ...appended];
+      setItems(updated);
+      pushHistory(updated, categories, `Nối thêm ${appended.length} công tác từ Excel`);
+      setToast({
+        show: true,
+        type: 'save',
+        message: 'ĐÃ NỐI THÊM CÔNG TÁC TỪ EXCEL!',
+        subMessage: `Đã bổ sung thêm ${appended.length} công tác vào dự án`,
+        time: new Date().toLocaleTimeString('vi-VN'),
+      });
+      setTimeout(() => setToast(t => ({ ...t, show: false })), 3500);
+    }
   };
 
   // Lưu toàn bộ dự án vào bộ nhớ cục bộ LocalStorage (F4 hoặc Tự động lưu)
@@ -1629,6 +1785,7 @@ export default function App() {
         onDirectExportPdf={handleDirectExportPdf}
         isExportingPdf={isExportingPdf}
         onImportExcel={handleImportExcel}
+        onOpenImportModal={() => setIsImportModalOpen(true)}
         onDownloadSampleExcel={exportSampleExcelTemplate}
         onOpenPythonModal={() => setIsPythonModalOpen(true)}
         onResetSample={handleResetSample}
@@ -1722,6 +1879,7 @@ export default function App() {
             undoActionName={undoActionName}
             redoActionName={redoActionName}
             onBatchUpdateItems={handleBatchUpdateItems}
+            onAddWorkItem={handleAddWorkItem}
           />
         )}
 
@@ -1901,6 +2059,19 @@ export default function App() {
         settings={settings}
         onSaveSettings={(newSettings) => setSettings(newSettings)}
         initialTab={settingsModalInitialTab}
+        projects={projects}
+        activeProjectId={activeProjectId}
+        onSelectProject={handleSelectProject}
+        onSaveProjectSettings={handleSaveProjectSettings}
+        onApplySettingsToAllProjects={handleApplySettingsToAllProjects}
+      />
+
+      <ExcelImportModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onImportItems={handleImportItems}
+        onDownloadSampleTemplate={exportSampleExcelTemplate}
+        currentProjectName={settings.projectName}
       />
 
       <PythonExportModal

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NormTemplate } from '../types/estimate';
-import { NORMS_CATALOG, searchNorms, removeVietnameseTones } from '../data/normsData';
+import { NORMS_CATALOG, searchNorms, removeVietnameseTones, resolveOrGenerateBXDNorm } from '../data/normsData';
 import { formatVND } from '../utils/calculator';
 import { Search, Plus, Check, Layers, X, BookOpen, Filter, Sparkles, Hash, Type, RotateCcw } from 'lucide-react';
 
@@ -23,25 +23,33 @@ const CHAPTER_FILTERS = [
   { id: 'prefix:AI', prefix: 'AI', label: 'AI: Ván khuôn coffa' },
   { id: 'prefix:AK', prefix: 'AK', label: 'AK: Hoàn thiện công trình' },
   { id: 'prefix:AL', prefix: 'AL', label: 'AL: Kết cấu thép & kim loại' },
-  { id: 'prefix:BA-BD', prefix: 'BA-BD', label: 'BA-BD: Cơ điện MEP & PCCC' },
-  { id: 'prefix:SA', prefix: 'SA', label: 'SA: Sửa chữa phá dỡ' },
+  { id: 'prefix:BA', prefix: 'BA', label: 'BA: Cấp thoát nước' },
+  { id: 'prefix:BB', prefix: 'BB', label: 'BB: Thiết bị vệ sinh' },
+  { id: 'prefix:BC', prefix: 'BC', label: 'BC: Điện & chiếu sáng' },
+  { id: 'prefix:BD', prefix: 'BD', label: 'BD: HVAC & PCCC' },
+  { id: 'prefix:SA', prefix: 'SA', label: 'SA: Sửa chữa & phá dỡ' },
+  { id: 'prefix:CS', prefix: 'CS', label: 'CS: Khảo sát & Thí nghiệm' },
 ];
 
 const QUICK_KEYWORD_TAGS = [
   { label: 'Bê tông', kw: 'bê tông' },
   { label: 'Cốt thép', kw: 'cốt thép' },
   { label: 'Ván khuôn', kw: 'ván khuôn' },
-  { label: 'Đào đất móng', kw: 'đào' },
+  { label: 'Đào móng', kw: 'đào' },
   { label: 'Xây gạch', kw: 'xây' },
   { label: 'Trát tường', kw: 'trát' },
   { label: 'Lát nền', kw: 'lát' },
   { label: 'Ốp đá Granite', kw: 'ốp đá' },
   { label: 'Sơn bả', kw: 'sơn' },
+  { label: 'Trần thạch cao', kw: 'thạch cao' },
+  { label: 'Cửa nhôm kính', kw: 'nhôm' },
   { label: 'Cọc ép/nhồi', kw: 'cọc' },
   { label: 'Ống cấp nước', kw: 'ống' },
-  { label: 'Dây điện', kw: 'dây điện' },
+  { label: 'Thiết bị vệ sinh', kw: 'bồn cầu' },
+  { label: 'Dây & tủ điện', kw: 'dây điện' },
   { label: 'PCCC Sprinkler', kw: 'chữa cháy' },
   { label: 'Phá dỡ', kw: 'phá dỡ' },
+  { label: 'Khảo sát', kw: 'khảo sát' },
 ];
 
 function highlightText(text: string, searchTerms: string[]) {
@@ -101,6 +109,14 @@ export const NormLookupModal: React.FC<NormLookupModalProps> = ({
         const nClean = nCode.replace(/[^a-z0-9]/g, '');
         return nCode.includes(cQuery) || (cClean.length > 0 && nClean.includes(cClean));
       });
+
+      // Nếu người dùng gõ mã hiệu BXD chuẩn, tự động phân giải định mức
+      if (/^[a-zA-Z]{2}/.test(codeFilter.trim())) {
+        const resolved = resolveOrGenerateBXDNorm(codeFilter.trim());
+        if (resolved && !list.some(n => n.code.toUpperCase() === resolved.code.toUpperCase())) {
+          list = [resolved, ...list];
+        }
+      }
     }
 
     if (nameFilter.trim()) {
@@ -408,7 +424,7 @@ export const NormLookupModal: React.FC<NormLookupModalProps> = ({
                     const isSelected = selectedPreviewNorm.code === norm.code;
                     return (
                       <tr
-                        key={norm.code}
+                        key={`${norm.code}-${idx}`}
                         onClick={() => {
                           setSelectedPreviewNorm(norm);
                           setSelectedIndex(idx);
@@ -506,8 +522,8 @@ export const NormLookupModal: React.FC<NormLookupModalProps> = ({
                     <span className="text-slate-400 italic text-[11px]">Không hao phí vật liệu</span>
                   ) : (
                     <ul className="space-y-1 text-[11px]">
-                      {selectedPreviewNorm.materials.map(m => (
-                        <li key={m.code} className="flex justify-between items-center bg-slate-50 px-2 py-1 rounded border border-slate-200/80">
+                      {selectedPreviewNorm.materials.map((m, mIdx) => (
+                        <li key={`${m.code || 'mat'}-${mIdx}`} className="flex justify-between items-center bg-slate-50 px-2 py-1 rounded border border-slate-200/80">
                           <span className="truncate max-w-[190px]">{m.name}</span>
                           <span className="font-mono text-blue-700 font-semibold">{m.norm} {m.unit}</span>
                         </li>
@@ -528,8 +544,8 @@ export const NormLookupModal: React.FC<NormLookupModalProps> = ({
                     <span className="text-slate-400 italic text-[11px]">Không hao phí nhân công</span>
                   ) : (
                     <ul className="space-y-1 text-[11px]">
-                      {selectedPreviewNorm.labors.map(l => (
-                        <li key={l.code} className="flex justify-between items-center bg-slate-50 px-2 py-1 rounded border border-slate-200/80">
+                      {selectedPreviewNorm.labors.map((l, lIdx) => (
+                        <li key={`${l.code || 'lab'}-${lIdx}`} className="flex justify-between items-center bg-slate-50 px-2 py-1 rounded border border-slate-200/80">
                           <span>{l.name} ({l.rank})</span>
                           <span className="font-mono text-amber-700 font-semibold">{l.norm} công</span>
                         </li>
@@ -550,8 +566,8 @@ export const NormLookupModal: React.FC<NormLookupModalProps> = ({
                     <span className="text-slate-400 italic text-[11px]">Không hao phí ca máy</span>
                   ) : (
                     <ul className="space-y-1 text-[11px]">
-                      {selectedPreviewNorm.machines.map(mac => (
-                        <li key={mac.code} className="flex justify-between items-center bg-slate-50 px-2 py-1 rounded border border-slate-200/80">
+                      {selectedPreviewNorm.machines.map((mac, macIdx) => (
+                        <li key={`${mac.code || 'mac'}-${macIdx}`} className="flex justify-between items-center bg-slate-50 px-2 py-1 rounded border border-slate-200/80">
                           <span className="truncate max-w-[190px]">{mac.name}</span>
                           <span className="font-mono text-emerald-700 font-semibold">{mac.norm} ca</span>
                         </li>

@@ -1,5 +1,7 @@
 import { NormTemplate } from '../types/estimate';
+import { COMPREHENSIVE_BXD_NORMS, resolveOrGenerateBXDNorm } from './bxdComprehensiveNorms';
 
+export { resolveOrGenerateBXDNorm };
 export { PROVINCES_DATA, ALL_PROVINCE_NAMES, findProvince } from './provincesData';
 
 /**
@@ -9,7 +11,7 @@ export { PROVINCES_DATA, ALL_PROVINCE_NAMES, findProvince } from './provincesDat
  * - Thông tư số 11/2021/TT-BXD (Xác định và quản lý chi phí đầu tư xây dựng)
  * - Thông tư số 14/2023/TT-BXD sửa đổi bổ sung định mức xây dựng
  */
-export const NORMS_CATALOG: NormTemplate[] = [
+const BASE_NORMS_CATALOG: NormTemplate[] = [
   // ==========================================
   // CHƯƠNG I (AA): CÔNG TÁC CHUẨN BỊ MẶT BẰNG
   // ==========================================
@@ -2311,7 +2313,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
     ]
   },
   {
-    code: 'AK.81110',
+    code: 'AK.51210',
     name: 'Lát nền gạch ceramic 600x600 vữa xi măng mác 75',
     unit: 'm2',
     defaultPriceMat: 185000,
@@ -2818,7 +2820,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
     ]
   },
   {
-    code: 'AE.22110',
+    code: 'AE.51110',
     name: 'Xây kè bờ kè móng bằng đá hộc vữa xi măng mác 100',
     unit: 'm3',
     defaultPriceMat: 650000,
@@ -2861,7 +2863,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
     ]
   },
   {
-    code: 'AF.13210',
+    code: 'AF.13220',
     name: 'Bê tông cột vách dày > 20cm mác 300 đá 1x2 vữa XM PC40',
     unit: 'm3',
     defaultPriceMat: 1150000,
@@ -2927,7 +2929,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
     ]
   },
   {
-    code: 'AF.16110',
+    code: 'AF.16120',
     name: 'Bê tông lanh tô, sê nô, ô văng mác 200 đá 1x2',
     unit: 'm3',
     defaultPriceMat: 980000,
@@ -2948,7 +2950,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
     ]
   },
   {
-    code: 'AF.17110',
+    code: 'AF.17120',
     name: 'Bê tông cầu thang bộ mác 250 đá 1x2 vữa trộn máy đổ thủ công',
     unit: 'm3',
     defaultPriceMat: 1050000,
@@ -3134,7 +3136,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
     ]
   },
   {
-    code: 'AH.14110',
+    code: 'AH.14120',
     name: 'Cốt thép bản sàn, sàn mái đường kính d <= 10mm thép cuộn CB240-T',
     unit: 'tấn',
     defaultPriceMat: 16900000,
@@ -3254,7 +3256,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
     ]
   },
   {
-    code: 'AI.13110',
+    code: 'AI.15120',
     name: 'Ván khuôn cầu thang bộ ván ép phủ phim giàn giáo thép',
     unit: '100m2',
     defaultPriceMat: 5400000,
@@ -3276,7 +3278,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
 
   // --- AK: HOÀN THIỆN CÔNG TRÌNH BỔ SUNG ---
   {
-    code: 'AK.11210',
+    code: 'AK.11220',
     name: 'Trát tường ngoài nhà vữa xi măng mác 75 dày 2.0cm giàn giáo ngoài',
     unit: 'm2',
     defaultPriceMat: 38000,
@@ -3435,7 +3437,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
     machines: []
   },
   {
-    code: 'AK.53110',
+    code: 'AK.92110',
     name: 'Sơn dầu bóng 2 nước bảo vệ kết cấu kim loại xà gồ lan can',
     unit: 'm2',
     defaultPriceMat: 38000,
@@ -3833,7 +3835,7 @@ export const NORMS_CATALOG: NormTemplate[] = [
     machines: []
   },
   {
-    code: 'BD.12110',
+    code: 'BD.11310',
     name: 'Lắp đặt tủ trung tâm báo cháy tự động 8 kênh báo động Hochiki',
     unit: 'bộ',
     defaultPriceMat: 6800000,
@@ -3978,6 +3980,18 @@ export const NORMS_CATALOG: NormTemplate[] = [
   }
 ];
 
+// Tích hợp toàn diện tất cả các công tác định mức Bộ Xây dựng (TT 12/2021/TT-BXD, TT 11/2021/TT-BXD, TT 14/2023/TT-BXD)
+const existingCodes = new Set<string>();
+const mergedCatalog: NormTemplate[] = [];
+for (const norm of [...BASE_NORMS_CATALOG, ...COMPREHENSIVE_BXD_NORMS]) {
+  if (!existingCodes.has(norm.code)) {
+    mergedCatalog.push(norm);
+    existingCodes.add(norm.code);
+  }
+}
+
+export const NORMS_CATALOG: NormTemplate[] = mergedCatalog;
+
 // Helper để tìm kiếm nhanh mã hiệu hoặc tên có dấu / không dấu
 export function searchNorms(query: string, chapterFilter?: string): NormTemplate[] {
   let list = NORMS_CATALOG;
@@ -3991,8 +4005,6 @@ export function searchNorms(query: string, chapterFilter?: string): NormTemplate
           n.code.startsWith('BC') || 
           n.code.startsWith('BD')
         );
-      } else if (pfx === 'AL') {
-        list = list.filter(n => n.code.startsWith('AL'));
       } else {
         list = list.filter(n => n.code.toUpperCase().startsWith(pfx));
       }
@@ -4010,7 +4022,7 @@ export function searchNorms(query: string, chapterFilter?: string): NormTemplate
   const qClean = removeVietnameseTones(rawQuery);
   const qAlphanumeric = rawQuery.replace(/[^a-z0-9]/g, '');
 
-  return list.filter(norm => {
+  let filtered = list.filter(norm => {
     const codeLower = norm.code.toLowerCase();
     const codeAlphanumeric = codeLower.replace(/[^a-z0-9]/g, '');
 
@@ -4027,6 +4039,16 @@ export function searchNorms(query: string, chapterFilter?: string): NormTemplate
 
     return codeMatch || nameMatch;
   });
+
+  // Tự động phân giải thông minh bất kỳ mã hiệu định mức BXD nào người dùng gõ
+  if (/^[a-zA-Z]{2}/.test(rawQuery)) {
+    const resolved = resolveOrGenerateBXDNorm(rawQuery);
+    if (resolved && !filtered.some(n => n.code.toUpperCase() === resolved.code.toUpperCase())) {
+      filtered = [resolved, ...filtered];
+    }
+  }
+
+  return filtered;
 }
 
 export function removeVietnameseTones(str: string): string {
